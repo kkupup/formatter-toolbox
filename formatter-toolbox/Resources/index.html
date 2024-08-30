@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Formatter Toolbox</title>
+</head>
+<style>
+html,body{
+    width: calc(100% - 12px);
+    height: 100%;
+    padding: 0 6px;
+    margin: 0;
+}
+.global{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.upper{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.upper-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.upper-btn{
+    width: 70px;
+    height: 25px;
+    margin-right: 10px;
+    color: #323232;
+    background: white;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.upper-btn:hover{
+    background: #323232;
+    color: white;
+}
+.active-btn{
+    background: #323232;
+    color: white;
+}
+.format-btn{
+    width: 100px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.format-btn > svg{
+    height: 13px;
+}
+.success-div{
+    height: 30px;
+    padding: 0 10px;
+    margin-right: 10px;
+    line-height: 30px;
+    border-radius: 5px;
+    background: #ccf7cd;
+    color: #33a000;
+    font-size: 13px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.error-div{
+    height: 30px;
+    padding: 0 10px;
+    margin-right: 10px;
+    line-height: 30px;
+    border-radius: 5px;
+    background: #ffcaca;
+    color: #d80000;
+    font-size: 13px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-5px, 0); }
+    20% { transform: translate(5px, 0); }
+    30% { transform: translate(-5px, 0); }
+    40% { transform: translate(5px, 0); }
+    50% { transform: translate(-5px, 0); }
+    60% { transform: translate(5px, 0); }
+    70% { transform: translate(-5px, 0); }
+    80% { transform: translate(5px, 0); }
+    90% { transform: translate(-5px, 0); }
+    100% { transform: translate(0, 0); }
+}
+.shake-element {
+    animation: shake 1s;
+}
+.setting-btn{
+    font-size: larger;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.setting-btn:hover{
+    transform: rotate(180deg);
+}
+.content{
+    width: 100%;
+    height: calc(100% - 80px)
+}
+.content > textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: 0;
+    font-size: 14px;
+    color: #323232;
+}
+.content > textarea::-webkit-scrollbar {
+	 width: 6px;
+	 height: 6px;
+}
+.content > textarea::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+  	-moz-border-radius: 3px;
+  	-webkit-border-radius: 3px;
+  	background-color: #c3c3c3;
+}
+.content > textarea::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+.content > textarea:focus{
+    outline: none;
+}
+.footer{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.setting{
+    top: 40px;
+    right: 10px;
+    position: absolute;
+    width: 150px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 0 6px rgba(0, 0, 0, 0.04);
+    background: white;
+    border-radius: 12px;
+    display: none;
+}
+.setting-inner{
+    width: calc(100% - 20px);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.setting-row{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.setting-row > span{
+    width: 60px;
+    font-size: 13px;
+    color: #323232;
+}
+.setting-row > div{
+    width: 70px;
+}
+.setting-number{
+    width: 55px;
+    border-radius: 5px;
+    border: 1px solid #aaaaaa;
+    padding-left: 6px;
+}
+.setting-number:focus{
+    outline: 1px solid #aaaaaa;
+}
+.setting-confirm{
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #323232;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.setting-confirm:hover{
+    background-color: #636363;
+}
+.footer-btn{
+    width: 100px;
+    height: 25px;
+    margin-right: 10px;
+    color: #323232;
+    background: white;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer-btn > svg{
+    height: 13px;
+}
+.footer-btn:hover{
+    background: #323232;
+    color: white;
+}
+</style>
+<body>
+<div class="setting" id="settingBoard">
+    <div class="setting-inner">
+        <div class="setting-row">
+            <span>Indent</span>
+            <div><input class="setting-number" id="indentNumber" type="number" value="4" min="0" max="10" required /></div>
+        </div>
+        <div class="setting-row" style="margin-bottom: unset;">
+            <button class="setting-confirm" onclick="saveSetting()">Confirm</button>
+        </div>
+    </div>
+</div>
+<div class="global">
+    <div class="upper">
+        <div class="upper-group">
+            <button class="upper-btn active-btn" onclick="chooseTag('JSON', event)">JSON</button>
+            <button class="upper-btn" onclick="chooseTag('XML', event)">XML</button>
+            <button class="upper-btn" onclick="chooseTag('HTML', event)">HTML</button>
+        </div>
+        <div class="upper-group">
+            <div class="success-div shake-element" id="successId">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                  </svg>
+                &nbsp;<span id="successMsg"></span>
+            </div>
+            <div class="error-div shake-element" id="errorId">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                &nbsp;<span id="errorMsg"></span>
+            </div>
+            <button class="upper-btn format-btn" onclick="format()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16">
+                    <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
+                </svg>
+                &nbsp;FORMAT
+            </button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="setting-btn" viewBox="0 0 16 16" onclick="setting()">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+            </svg>
+        </div>
+    </div>
+    <div class="content">
+        <textarea id="textarea" placeholder="Please input JSON data or import JSON file ..."></textarea>
+    </div>
+    <div class="footer">
+        <button class="footer-btn" onclick="clean()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            </svg>
+            &nbsp;Clean
+        </button>
+        <button class="footer-btn" onclick="importFile()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+            </svg>
+            &nbsp;Import
+        </button>
+        <button class="footer-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+            </svg>
+            &nbsp;Export
+        </button>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    let currentTAG = "JSON";
+    let settingVisible = false;
+
+    function chooseTag(tag,event){
+        currentTAG = tag;
+        document.getElementById("textarea").placeholder = `Please input ${tag} data or import ${tag} file ...`;
+        let btnDoms = document.getElementsByClassName("upper-btn");
+        for (let i = 0; i < btnDoms.length; i++) btnDoms[i].classList.remove("active-btn");
+        event.target.classList.add("active-btn");
+    }
+
+    function format(){
+       let data = document.getElementById("textarea").value;
+       if(data !== '') {
+            const formatData = formatJSON(data);
+            if(formatData) {
+                closeResultTag();
+                document.getElementById("textarea").value = formatData;
+            }
+       }
+    }
+
+    // {"ceshi":"测试测试","ceshi":{"asdasd":"adasdasdasd","asdxxxxx":[{"a":"a"},{"c":"c"},{"b":"b"}]}}
+    function formatJSON(json){
+        try{
+            const indent = document.getElementById("indentNumber").value || 4
+            if(json.indexOf("{") == -1) throw new Error();
+            let parseJSON = JSON.parse(json);
+            return JSON.stringify(parseJSON, null, Number(indent));
+        }catch(e){
+            error(true, "Data Error");
+            return undefined;
+        }
+    }
+
+    function clean(){
+        document.getElementById("textarea").value = "";
+    }
+
+    function error(bool, errorMsg){
+        if(bool){
+            document.getElementById("errorMsg").innerHTML = errorMsg;
+            document.getElementById("errorId").style.display = "flex";
+        }
+        else document.getElementById("errorId").style.display = "none";
+    }
+
+    function success(bool, successMsg){
+        if(bool){
+            document.getElementById("successMsg").innerHTML = successMsg;
+            document.getElementById("successId").style.display = "flex";
+        }
+        else document.getElementById("successId").style.display = "none";
+    }
+
+    function closeResultTag(){
+        success(false);
+        error(false);
+    }
+
+    function setting(){
+        settingVisible = !settingVisible;
+        if(settingVisible){
+            getSetting();
+            document.getElementById("settingBoard").style.display = "block";
+        }
+        else document.getElementById("settingBoard").style.display = "none";
+    }
+
+    function saveSetting(){
+        let indent = Number(document.getElementById("indentNumber").value);
+        if(indent >= 0 && indent <= 10){
+            window.webkit.messageHandlers.saveSettingHandler.postMessage(`{"indent":${indent}}`);
+            return new Promise(function(resolve, reject) {
+                window.saveSettingResolve = resolve;
+            }).then(function(result) {
+                if(Boolean(result)){
+                    success(true, "Change Success")
+                } else {
+                    error(true, "Change Error");
+                }
+            });
+        }else{
+            error(true, "Indent is 0 to 10");
+        }
+    }
+
+    function getSetting(){
+        window.webkit.messageHandlers.getSettingHandler.postMessage("");
+        return new Promise(function(resolve, reject) {
+            window.getSettingResolve = resolve;
+        }).then(function(result) {
+            if(result >= 0 && result <= 10) document.getElementById("indentNumber").value = result;
+            else document.getElementById("indentNumber").value = 4;
+        });
+    }
+
+    function importFile(){
+        console.log(111)
+        window.webkit.messageHandlers.importFileHandler.postMessage(currentTAG.toLowerCase());
+        return new Promise(function(resolve, reject) {
+            window.importFileResolve = resolve;
+        }).then(function(result) {
+            document.getElementById("textarea").innerHTML = result
+        });
+    }
+
+    getSetting()
+
+    // function sendMessageToSwift() {
+    //     window.webkit.messageHandlers.myMessageHandler.postMessage("Hello from JavaScript!");
+    // }
+    // function sendMessageToSwift1() {
+    //     window.webkit.messageHandlers.hisMessageHandler.postMessage("Hello from JavaScript1!");
+    // }
+    // function getMessageFromSwift(value){
+    //     document.getElementById("textarea").value = value
+    // }
+</script>
