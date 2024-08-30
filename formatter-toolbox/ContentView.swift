@@ -21,11 +21,14 @@ class WebViewCoordinator: NSObject, WKScriptMessageHandler {
         if message.name == "saveSettingHandler", let messageBody = message.body as? String {
             stjSaveSettingResolve(result: UserSettingMapper(viewContext: viewContext).saveUserSetting(data: messageBody), webView: message.webView)
         }
-        if message.name == "getSettingHandler" {
+        else if message.name == "getSettingHandler" {
             stjGetSettingResolve(result: UserSettingMapper(viewContext: viewContext).getUserSettingIndent(), webView: message.webView)
         }
-        if message.name == "importFileHandler", let messageBody = message.body as? String {
+        else if message.name == "importFileHandler", let messageBody = message.body as? String {
             stjImportFileResolve(result: selectFile(type: messageBody), webView: message.webView)
+        }
+        else if message.name == "exportFileHandler", let messageBody = message.body as? String {
+            saveAsFile(type: messageBody.prefix(10).replacingOccurrences(of: ":", with: ""), data: String(messageBody[messageBody.index(messageBody.startIndex, offsetBy: 10)...]))
         }
     }
     
@@ -41,8 +44,10 @@ class WebViewCoordinator: NSObject, WKScriptMessageHandler {
     
     private func stjImportFileResolve(result: String, webView: WKWebView?){
         print("stjImportFileResolve: \(result)")
-        webView?.evaluateJavaScript("window.importFileResolve(\(result));", completionHandler: nil)
+        webView?.evaluateJavaScript("window.importFileResolve(`\(result)`);", completionHandler: nil)
     }
+    
+    
 }
 
 struct WebView: NSViewRepresentable {
@@ -61,10 +66,12 @@ struct WebView: NSViewRepresentable {
         contentController.add(context.coordinator, name: "saveSettingHandler")
         contentController.add(context.coordinator, name: "getSettingHandler")
         contentController.add(context.coordinator, name: "importFileHandler")
+        contentController.add(context.coordinator, name: "exportFileHandler")
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
-        
-        return WKWebView(frame: .zero, configuration: config)
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.isInspectable = true
+        return webView
     }
 
     func updateNSView(_ nsView: WKWebView, context: Context) {
