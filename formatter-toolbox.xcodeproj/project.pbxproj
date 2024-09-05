@@ -14,6 +14,10 @@
 		2922706A2C7FF9C300A5544A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292270692C7FF9C300A5544A /* WebKit.framework */; };
 		2922706C2C7FF9CD00A5544A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2922706B2C7FF9CD00A5544A /* AppKit.framework */; };
 		292270792C7FFD3B00A5544A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 292270662C7FF93B00A5544A /* index.html */; };
+		29A348452C8546AF0097C826 /* OperationHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A348442C8546AF0097C826 /* OperationHistoryMapper.swift */; };
+		29DCF3E02C86F8AB000F6D24 /* JetBrainsMono-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 29DCF3DF2C86F8A0000F6D24 /* JetBrainsMono-Regular.woff2 */; };
+		29DCF3E22C8833E7000F6D24 /* split.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 29DCF3E12C8833E7000F6D24 /* split.min.js */; };
+		29DCF3E42C8955DE000F6D24 /* xml-formatter.js in Resources */ = {isa = PBXBuildFile; fileRef = 29DCF3E32C8955DE000F6D24 /* xml-formatter.js */; };
 		29E34EC62C80546500C8EC94 /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29E34EC42C80546500C8EC94 /* dataModel.xcdatamodeld */; };
 		29E34EC82C806F1D00C8EC94 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E34EC72C806F1D00C8EC94 /* CoreData.framework */; };
 		29E34ECA2C81532100C8EC94 /* UserSettingMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E34EC92C81532100C8EC94 /* UserSettingMapper.swift */; };
@@ -31,6 +35,10 @@
 		292270662C7FF93B00A5544A /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		292270692C7FF9C300A5544A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		2922706B2C7FF9CD00A5544A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		29A348442C8546AF0097C826 /* OperationHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationHistoryMapper.swift; sourceTree = "<group>"; };
+		29DCF3DF2C86F8A0000F6D24 /* JetBrainsMono-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JetBrainsMono-Regular.woff2"; sourceTree = "<group>"; };
+		29DCF3E12C8833E7000F6D24 /* split.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = split.min.js; sourceTree = "<group>"; };
+		29DCF3E32C8955DE000F6D24 /* xml-formatter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "xml-formatter.js"; sourceTree = "<group>"; };
 		29E34EC52C80546500C8EC94 /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
 		29E34EC72C806F1D00C8EC94 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29E34EC92C81532100C8EC94 /* UserSettingMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingMapper.swift; sourceTree = "<group>"; };
@@ -76,6 +84,7 @@
 				292270562C7F2B5B00A5544A /* formatter_toolboxApp.swift */,
 				292270582C7F2B5B00A5544A /* ContentView.swift */,
 				29E34EC92C81532100C8EC94 /* UserSettingMapper.swift */,
+				29A348442C8546AF0097C826 /* OperationHistoryMapper.swift */,
 				29E34ECD2C819D2400C8EC94 /* FileController.swift */,
 				29E34ECB2C815C9A00C8EC94 /* PersistenceController.swift */,
 				29E34EC42C80546500C8EC94 /* dataModel.xcdatamodeld */,
@@ -97,6 +106,9 @@
 		292270652C7FF8F900A5544A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				29DCF3DF2C86F8A0000F6D24 /* JetBrainsMono-Regular.woff2 */,
+				29DCF3E12C8833E7000F6D24 /* split.min.js */,
+				29DCF3E32C8955DE000F6D24 /* xml-formatter.js */,
 				292270662C7FF93B00A5544A /* index.html */,
 			);
 			path = Resources;
@@ -170,9 +182,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29DCF3E02C86F8AB000F6D24 /* JetBrainsMono-Regular.woff2 in Resources */,
 				292270792C7FFD3B00A5544A /* index.html in Resources */,
+				29DCF3E22C8833E7000F6D24 /* split.min.js in Resources */,
 				2922705E2C7F2B5C00A5544A /* Preview Assets.xcassets in Resources */,
 				2922705B2C7F2B5C00A5544A /* Assets.xcassets in Resources */,
+				29DCF3E42C8955DE000F6D24 /* xml-formatter.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +203,7 @@
 				29E34EC62C80546500C8EC94 /* dataModel.xcdatamodeld in Sources */,
 				29E34ECE2C819D2400C8EC94 /* FileController.swift in Sources */,
 				292270572C7F2B5B00A5544A /* formatter_toolboxApp.swift in Sources */,
+				29A348452C8546AF0097C826 /* OperationHistoryMapper.swift in Sources */,
 				29E34ECC2C815C9A00C8EC94 /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

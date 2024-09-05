@@ -5,7 +5,6 @@
 //  Created by wzh on 2024/8/30.
 //
 
-import WebKit
 import CoreData
 
 class UserSettingMapper {
