@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>xxx</title>
+        <link rel="stylesheet" type="text/css" href="setting.css" />
+        <script src="define-button.js"></script>
+        <script src="define-layout.js"></script>
+        <script src="define-tag.js"></script>
+        <script src="swift-communicate.js"></script>
+        <script src="xml-formatter.js"></script>
+        <script src="md5.js"></script>
+    </head>
+    <style>
+        @font-face {
+            font-family: 'Balthazar Regular';
+            src: url('Balthazar-Regular.ttf') format('truetype');
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            font-family: 'Balthazar Regular';
+        }
+
+        .global {
+            width: calc(100% - 12px);
+            height: 100%;
+            padding: 0 6px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+
+        .upper {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .active-btn {
+            background: #323232 !important;
+            color: white !important;
+            border: 1px solid #323232 !important;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            10% {
+                transform: translate(-5px, 0);
+            }
+
+            20% {
+                transform: translate(5px, 0);
+            }
+
+            30% {
+                transform: translate(-5px, 0);
+            }
+
+            40% {
+                transform: translate(5px, 0);
+            }
+
+            50% {
+                transform: translate(-5px, 0);
+            }
+
+            60% {
+                transform: translate(5px, 0);
+            }
+
+            70% {
+                transform: translate(-5px, 0);
+            }
+
+            80% {
+                transform: translate(5px, 0);
+            }
+
+            90% {
+                transform: translate(-5px, 0);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        .shake-element {
+            animation: shake 1s;
+        }
+
+        .content {
+            width: 100%;
+            height: calc(100% - 80px);
+        }
+
+        .content > textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            border: 0;
+            font-size: 14px;
+            color: #323232;
+            font-family: 'JetBrainsMono-Regular';
+        }
+
+        .content > textarea::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .content > textarea::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            background-color: #c3c3c3;
+        }
+
+        .content > textarea::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        .content > textarea:focus {
+            outline: none;
+        }
+
+        .footer {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .copy-animations {
+            bottom: 30px;
+            width: 100px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            position: absolute;
+            font-size: 13px;
+            color: #33a000;
+            opacity: 0;
+        }
+
+        .copy-animations > svg {
+            height: 13px;
+        }
+    </style>
+    <body>
+        <div class="global">
+            <div class="upper">
+                <gap-layout>
+                    <func-text-button id="JSON" text="JSON" width="70" onclick="chooseTag('JSON', event)" class="active-btn"></func-text-button>
+                    <func-text-button id="XML" text="XML" width="70" onclick="chooseTag('XML', event)"></func-text-button>
+                    <func-text-button id="HTML" text="HTML" width="70" onclick="chooseTag('HTML', event)"></func-text-button>
+                </gap-layout>
+                <gap-layout>
+                    <info-tag type="success" id="SUCCESS" class="shake-element" disappear><span id="successMsg"></span></info-tag>
+                    <info-tag type="error" id="ERROR" class="shake-element" disappear><span id="errorMsg"></span></info-tag>
+                    <func-text-button type="format" onclick="format()"></func-text-button>
+                    <func-icon-button type="setting" onclick="setting(settingVisible = !settingVisible)"></func-icon-button>
+                    <func-icon-button type="history" onclick="openHistory()" id="historyBtn"></func-icon-button>
+                </gap-layout>
+            </div>
+            <div class="content">
+                <textarea id="textarea" placeholder="Please input JSON data or import JSON file ..." onfocus="setting(false)"></textarea>
+            </div>
+            <div class="footer">
+                <div class="copy-animations" id="copyAnimations">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                    Copied
+                </div>
+                <gap-layout>
+                    <func-text-button type="copy" onclick="copy('textarea')"></func-text-button>
+                    <func-text-button type="clean" onclick="clean()"></func-text-button>
+                    <func-text-button type="import" onclick="importFile()"></func-text-button>
+                    <func-text-button type="export" onclick="exportFile()"></func-text-button>
+                </gap-layout>
+            </div>
+        </div>
+        <div class="setting" id="settingBoard">
+            <div class="setting-inner">
+                <div class="setting-row">
+                    <span class="setting-label">Indentation</span>
+                    <input class="setting-number" id="indentNumber" type="number" value="4" min="0" max="10" required />
+                </div>
+                <div class="setting-row" style="margin-bottom: unset">
+                    <button class="setting-confirm" onclick="saveSetting()">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    let currentTAG = 'JSON';
+    let settingVisible = false;
+    let BI = '    ';
+    let PLACEHOLDER_JSON = `Please input JSON data or import JSON file ...\n\n{\n${BI}"key1": "value1",\n${BI}"key2": [\n${BI}${BI}{\n${BI}${BI}${BI}"key3": "value3"\n${BI}${BI}},\n${BI}${BI}{\n${BI}${BI}${BI}"key4": "value4"\n${BI}${BI}}\n${BI}]\n}`;
+    let PLACEHOLDER_XML = `Please input XML data or import XML file ...\n\n<?xml version="1.0" encoding="UTF-8"?>\n<key1>\n${BI}<key2>\n${BI}${BI}value2\n${BI}</key2>\n${BI}<key3>\n${BI}${BI}value3\n${BI}</key3>\n</key1>\n<key4>\n${BI}value4\n</key4>`;
+    let PLACEHOLDER_HTML = `Please input HTML data or import HTML file ...\n\n<!DOCTYPE html>\n<html>\n${BI}<head>\n${BI}${BI}<meta charset="UTF-8">\n${BI}${BI}${BI}<title>\n${BI}${BI}${BI}${BI}Title\n${BI}${BI}${BI}</title>\n${BI}${BI}</meta>\n${BI}</head>\n${BI}<body>\n${BI}${BI}<h1>\n${BI}${BI}${BI}Title\n${BI}${BI}</h1>\n${BI}</body>\n</html>`;
+
+    function chooseTag(tag, event) {
+        currentTAG = tag;
+        let textarea = document.getElementById('textarea');
+        if (tag === 'JSON') textarea.placeholder = PLACEHOLDER_JSON;
+        else if (tag === 'XML') textarea.placeholder = PLACEHOLDER_XML;
+        else if (tag === 'HTML') textarea.placeholder = PLACEHOLDER_HTML;
+        let btnDoms = document.getElementsByTagName('func-text-button');
+        for (let i = 0; i < btnDoms.length; i++) btnDoms[i].classList.remove('active-btn');
+        document.getElementById(tag).classList.add('active-btn');
+    }
+
+    function format() {
+        let data = document.getElementById('textarea').value;
+        if (data !== '') {
+            if (currentTAG === 'JSON') {
+                const formatData = formatJSON(data);
+                if (formatData) {
+                    closeResultTag();
+                    document.getElementById('textarea').value = formatData;
+                    saveHistoryHandler(`{"type":"${type}","operate":"${operate}","before":"${btoa(encodeURI(before))}","after":"${btoa(encodeURIComponent(after))}"}`);
+                }
+            } else if (currentTAG === 'XML') {
+                const formatData = formatXML(data);
+                if (formatData) {
+                    closeResultTag();
+                    document.getElementById('textarea').value = formatData;
+                    saveHistoryHandler(`{"type":"${type}","operate":"${operate}","before":"${btoa(encodeURI(before))}","after":"${btoa(encodeURIComponent(after))}"}`);
+                }
+            }
+        }
+    }
+
+    // {"ceshi":"测试测试","ceshi":{"asdasd":"adasdasdasd","asdxxxxx":[{"a":"a"},{"c":"c"},{"b":"b"}]}}
+    function formatJSON(json) {
+        try {
+            const indent = document.getElementById('indentNumber').value || 4;
+            if (json.indexOf('{') == -1) throw new Error();
+            let parseJSON = JSON.parse(json);
+            return JSON.stringify(parseJSON, null, Number(indent));
+        } catch (e) {
+            error(true, 'Data Error');
+            return undefined;
+        }
+    }
+
+    // <?xml version="1.0" encoding="UTF-8" standalone="yes"?><result><code>返回码</code><msg>返回消息内容</msg></result>
+    function formatXML(xml) {
+        try {
+            const indent = document.getElementById('indentNumber').value || 4;
+            let space = '0'.padStart(Number(indent) + 1, ' ').replace(/.$/, '');
+            const xmlFormatter = require('xml-formatter');
+            return xmlFormatter(xml, { indentation: space });
+        } catch (e) {
+            error(true, 'Data Error');
+            return undefined;
+        }
+    }
+
+    function error(bool, errorMsg) {
+        if (bool) {
+            document.getElementById('errorMsg').innerHTML = errorMsg;
+            document.getElementById('ERROR').style.display = 'flex';
+        } else document.getElementById('ERROR').style.display = 'none';
+    }
+
+    function success(bool, successMsg) {
+        if (bool) {
+            document.getElementById('successMsg').innerHTML = successMsg;
+            document.getElementById('SUCCESS').style.display = 'flex';
+        } else document.getElementById('SUCCESS').style.display = 'none';
+    }
+
+    function closeResultTag() {
+        success(false);
+        error(false);
+    }
+
+    function setting(bool) {
+        settingVisible = bool;
+        if (bool) {
+            // getSetting();
+            document.getElementById('settingBoard').style.display = 'block';
+        } else document.getElementById('settingBoard').style.display = 'none';
+    }
+
+    function getSetting() {
+        getSettingHandler('', function (result) {
+            if (result >= 0 && result <= 10) document.getElementById('indentNumber').value = result;
+            else document.getElementById('indentNumber').value = 4;
+        });
+    }
+
+    function saveSetting() {
+        let indent = Number(document.getElementById('indentNumber').value);
+        if (indent >= 0 && indent <= 10) {
+            saveSettingHandler(`{"indent":${indent}}`, function (result) {
+                if (Boolean(result)) success(true, 'Change Success');
+                else error(true, 'Change Error');
+            });
+        } else {
+            error(true, 'Indent is 0 to 10');
+        }
+    }
+
+    function copy(id, btnId) {
+        const value = document.getElementById(id).value;
+        if (value && value !== '') {
+            copyTextHandler(value);
+        }
+    }
+
+    function clean() {
+        document.getElementById('textarea').value = '';
+    }
+
+    function importFile() {
+        importFileHandler(currentTAG.toLowerCase(), function (result) {
+            if (result && result != '') document.getElementById('textarea').value = atob(result);
+        });
+    }
+
+    function exportFile() {
+        exportFileHandler(currentTAG.toLowerCase().padEnd(10, ':') + document.getElementById('textarea').value);
+    }
+</script>
