@@ -15,8 +15,17 @@
 		2922706C2C7FF9CD00A5544A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2922706B2C7FF9CD00A5544A /* AppKit.framework */; };
 		292270792C7FFD3B00A5544A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 292270662C7FF93B00A5544A /* index.html */; };
 		29A348452C8546AF0097C826 /* OperationHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A348442C8546AF0097C826 /* OperationHistoryMapper.swift */; };
-		29DCF3E02C86F8AB000F6D24 /* JetBrainsMono-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 29DCF3DF2C86F8A0000F6D24 /* JetBrainsMono-Regular.woff2 */; };
-		29DCF3E22C8833E7000F6D24 /* split.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 29DCF3E12C8833E7000F6D24 /* split.min.js */; };
+		29CF32EF2C91407C00A04B10 /* define-layout.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E42C91407B00A04B10 /* define-layout.js */; };
+		29CF32F02C91407C00A04B10 /* define-tool.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E52C91407B00A04B10 /* define-tool.js */; };
+		29CF32F12C91407C00A04B10 /* swift-communicate.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E62C91407B00A04B10 /* swift-communicate.js */; };
+		29CF32F22C91407C00A04B10 /* setting.css in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E72C91407B00A04B10 /* setting.css */; };
+		29CF32F32C91407C00A04B10 /* Balthazar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E82C91407B00A04B10 /* Balthazar-Regular.ttf */; };
+		29CF32F42C91407C00A04B10 /* xml-formatter.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E92C91407B00A04B10 /* xml-formatter.js */; };
+		29CF32F52C91407C00A04B10 /* define-button.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EA2C91407B00A04B10 /* define-button.js */; };
+		29CF32F62C91407C00A04B10 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EB2C91407C00A04B10 /* index.html */; };
+		29CF32F72C91407C00A04B10 /* define-tag.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EC2C91407C00A04B10 /* define-tag.js */; };
+		29CF32F82C91407C00A04B10 /* define-svg.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32ED2C91407C00A04B10 /* define-svg.js */; };
+		29CF32F92C91407C00A04B10 /* md5.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EE2C91407C00A04B10 /* md5.js */; };
 		29DCF3E42C8955DE000F6D24 /* xml-formatter.js in Resources */ = {isa = PBXBuildFile; fileRef = 29DCF3E32C8955DE000F6D24 /* xml-formatter.js */; };
 		29E34EC62C80546500C8EC94 /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29E34EC42C80546500C8EC94 /* dataModel.xcdatamodeld */; };
 		29E34EC82C806F1D00C8EC94 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E34EC72C806F1D00C8EC94 /* CoreData.framework */; };
@@ -36,8 +45,17 @@
 		292270692C7FF9C300A5544A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		2922706B2C7FF9CD00A5544A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29A348442C8546AF0097C826 /* OperationHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationHistoryMapper.swift; sourceTree = "<group>"; };
-		29DCF3DF2C86F8A0000F6D24 /* JetBrainsMono-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JetBrainsMono-Regular.woff2"; sourceTree = "<group>"; };
-		29DCF3E12C8833E7000F6D24 /* split.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = split.min.js; sourceTree = "<group>"; };
+		29CF32E42C91407B00A04B10 /* define-layout.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-layout.js"; sourceTree = "<group>"; };
+		29CF32E52C91407B00A04B10 /* define-tool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-tool.js"; sourceTree = "<group>"; };
+		29CF32E62C91407B00A04B10 /* swift-communicate.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "swift-communicate.js"; sourceTree = "<group>"; };
+		29CF32E72C91407B00A04B10 /* setting.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = setting.css; sourceTree = "<group>"; };
+		29CF32E82C91407B00A04B10 /* Balthazar-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Balthazar-Regular.ttf"; sourceTree = "<group>"; };
+		29CF32E92C91407B00A04B10 /* xml-formatter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "xml-formatter.js"; sourceTree = "<group>"; };
+		29CF32EA2C91407B00A04B10 /* define-button.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-button.js"; sourceTree = "<group>"; };
+		29CF32EB2C91407C00A04B10 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		29CF32EC2C91407C00A04B10 /* define-tag.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-tag.js"; sourceTree = "<group>"; };
+		29CF32ED2C91407C00A04B10 /* define-svg.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-svg.js"; sourceTree = "<group>"; };
+		29CF32EE2C91407C00A04B10 /* md5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = md5.js; sourceTree = "<group>"; };
 		29DCF3E32C8955DE000F6D24 /* xml-formatter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "xml-formatter.js"; sourceTree = "<group>"; };
 		29E34EC52C80546500C8EC94 /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
 		29E34EC72C806F1D00C8EC94 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -106,8 +124,17 @@
 		292270652C7FF8F900A5544A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29DCF3DF2C86F8A0000F6D24 /* JetBrainsMono-Regular.woff2 */,
-				29DCF3E12C8833E7000F6D24 /* split.min.js */,
+				29CF32E82C91407B00A04B10 /* Balthazar-Regular.ttf */,
+				29CF32EA2C91407B00A04B10 /* define-button.js */,
+				29CF32E42C91407B00A04B10 /* define-layout.js */,
+				29CF32ED2C91407C00A04B10 /* define-svg.js */,
+				29CF32EC2C91407C00A04B10 /* define-tag.js */,
+				29CF32E52C91407B00A04B10 /* define-tool.js */,
+				29CF32EB2C91407C00A04B10 /* index.html */,
+				29CF32EE2C91407C00A04B10 /* md5.js */,
+				29CF32E72C91407B00A04B10 /* setting.css */,
+				29CF32E62C91407B00A04B10 /* swift-communicate.js */,
+				29CF32E92C91407B00A04B10 /* xml-formatter.js */,
 				29DCF3E32C8955DE000F6D24 /* xml-formatter.js */,
 				292270662C7FF93B00A5544A /* index.html */,
 			);
@@ -182,12 +209,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29DCF3E02C86F8AB000F6D24 /* JetBrainsMono-Regular.woff2 in Resources */,
+				29CF32F22C91407C00A04B10 /* setting.css in Resources */,
+				29CF32F42C91407C00A04B10 /* xml-formatter.js in Resources */,
 				292270792C7FFD3B00A5544A /* index.html in Resources */,
-				29DCF3E22C8833E7000F6D24 /* split.min.js in Resources */,
+				29CF32F02C91407C00A04B10 /* define-tool.js in Resources */,
 				2922705E2C7F2B5C00A5544A /* Preview Assets.xcassets in Resources */,
+				29CF32F32C91407C00A04B10 /* Balthazar-Regular.ttf in Resources */,
+				29CF32F82C91407C00A04B10 /* define-svg.js in Resources */,
 				2922705B2C7F2B5C00A5544A /* Assets.xcassets in Resources */,
+				29CF32F52C91407C00A04B10 /* define-button.js in Resources */,
 				29DCF3E42C8955DE000F6D24 /* xml-formatter.js in Resources */,
+				29CF32F92C91407C00A04B10 /* md5.js in Resources */,
+				29CF32F62C91407C00A04B10 /* index.html in Resources */,
+				29CF32F12C91407C00A04B10 /* swift-communicate.js in Resources */,
+				29CF32EF2C91407C00A04B10 /* define-layout.js in Resources */,
+				29CF32F72C91407C00A04B10 /* define-tag.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

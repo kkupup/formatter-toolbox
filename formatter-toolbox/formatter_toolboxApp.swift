@@ -15,12 +15,12 @@ struct formatter_toolboxApp: App {
     var body: some Scene {
         Window("Main", id: "Main") {
             ContentView()
-                .frame(minWidth: 700, minHeight: 400)
+                .frame(minWidth: 800, minHeight: 400)
                 .onAppear{
                     if let window = NSApplication.shared.windows.first {
                         window.title = "Formatter Toolbox"
-                        window.setContentSize(NSSize(width: 700, height: 400))
-                        window.minSize = NSSize(width: 700, height: 400)
+                        window.setContentSize(NSSize(width: 800, height: 500))
+                        window.minSize = NSSize(width: 800, height: 500)
                         window.titlebarAppearsTransparent = true
                         window.backgroundColor = .white
                         DispatchQueue.main.async {
