@@ -17,8 +17,9 @@ class OperationHistoryMapper{
     
     func getOperationHistory() -> String{
         let fetchRequest: NSFetchRequest<OperationHistory> = OperationHistory.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         do {
-            fetchRequest.propertiesToFetch = ["date", "id"]
             let operationHistories = try self.viewContext.fetch(fetchRequest)
             return operationHistoriesToString(data: operationHistories)
         } catch {
@@ -36,6 +37,27 @@ class OperationHistoryMapper{
             }
             try viewContext.save()
             print("Successfully deleted all OperationHistory records.")
+            return true
+        } catch {
+            print("Failed to delete all OperationHistory records: \(error)")
+            return false
+        }
+    }
+    
+    func deleteAllOperationHistories(idString: String) -> Bool{
+        guard let id = UUID(uuidString: idString) else {
+                print("Invalid UUID string.")
+                return false
+            }
+        let fetchRequest: NSFetchRequest<OperationHistory> = OperationHistory.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        do {
+            let results = try self.viewContext.fetch(fetchRequest)
+            if let operationHistoryToDelete = results.first {
+                self.viewContext.delete(operationHistoryToDelete)
+                try self.viewContext.save()
+                print("OperationHistory deleted successfully.")
+            }
             return true
         } catch {
             print("Failed to delete all OperationHistory records: \(error)")

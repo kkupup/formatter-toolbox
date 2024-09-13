@@ -25,6 +25,9 @@ class WebViewCoordinator: NSObject, WKScriptMessageHandler {
         if message.name == "saveSettingHandler", let messageBody = message.body as? String {
             stjSaveSettingResolve(result: UserSettingMapper(viewContext: viewContext).saveUserSetting(data: messageBody), webView: message.webView)
         }
+//        else if message.name == "changeTitleHandler", let messageBody = message.body as? String {
+//            DispatchQueue.main.async { self.parentWebView.title = "Formatter Toolbox > " + messageBody }
+//        }
         else if message.name == "getSettingHandler" {
             stjGetSettingResolve(result: UserSettingMapper(viewContext: viewContext).getUserSettingIndent(), webView: message.webView)
         }    
@@ -51,6 +54,9 @@ class WebViewCoordinator: NSObject, WKScriptMessageHandler {
         else if message.name == "deleteAllOperationHistoryHandler" {
             stjDeleteAllOperationHistoryHandlerResolve(result: OperationHistoryMapper(viewContext: viewContext).deleteAllOperationHistories(), webView: message.webView)
         }
+        else if message.name == "deleteHistoryHandler", let messageBody = message.body as? String  {
+            stjDeleteHistoryHandlerResolve(result: OperationHistoryMapper(viewContext: viewContext).deleteAllOperationHistories(idString: messageBody),  webView: message.webView)
+        }
     }
     
     private func stjSaveSettingResolve(result: Bool, webView: WKWebView?){
@@ -72,6 +78,10 @@ class WebViewCoordinator: NSObject, WKScriptMessageHandler {
     private func stjDeleteAllOperationHistoryHandlerResolve(result: Bool, webView: WKWebView?){
         print("stjDeleteAllOperationHistoryHandlerResolve: \(result)")
         webView?.evaluateJavaScript("window.deleteAllOperationHistoryHandlerResolve(`\(result)`);", completionHandler: nil)
+    }
+    private func stjDeleteHistoryHandlerResolve(result: Bool, webView: WKWebView?){
+        print("deleteHistoryHandlerResolve: \(result)")
+        webView?.evaluateJavaScript("window.deleteHistoryHandlerResolve(`\(result)`);", completionHandler: nil)
     }
     
     private func strToBase64(str: String) -> String{
@@ -95,25 +105,20 @@ struct WebView: NSViewRepresentable {
     let fileExtension: String
     let viewContext: NSManagedObjectContext
     let openWindow: OpenWindowAction
+    @Binding var title: String
     
-    init(fileName: String, fileExtension: String, viewContext: NSManagedObjectContext, openWindow: OpenWindowAction) {
-        self.fileName = fileName
-        self.fileExtension = fileExtension
-        self.viewContext = viewContext
-        self.openWindow = openWindow
-    }
-
     func makeNSView(context: Context) -> WKWebView {
         let contentController = WKUserContentController()
+        contentController.add(context.coordinator, name: "changeTitleHandler")
         contentController.add(context.coordinator, name: "saveSettingHandler")
         contentController.add(context.coordinator, name: "getSettingHandler")
         contentController.add(context.coordinator, name: "copyTextHandler")
         contentController.add(context.coordinator, name: "importFileHandler")
         contentController.add(context.coordinator, name: "exportFileHandler")
-        contentController.add(context.coordinator, name: "resizeWindowHandler")
         contentController.add(context.coordinator, name: "saveHistoryHandler")
         contentController.add(context.coordinator, name: "getOperationHistoryHandler")
         contentController.add(context.coordinator, name: "deleteAllOperationHistoryHandler")
+        contentController.add(context.coordinator, name: "deleteHistoryHandler")
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
         let webView = WKWebView(frame: .zero, configuration: config)
@@ -135,9 +140,113 @@ struct WebView: NSViewRepresentable {
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.openWindow) private var openWindow
+    @State private var title: String = "FORMAT"
     
     var body: some View {
-        WebView(fileName: "index", fileExtension: "html", viewContext: viewContext, openWindow: openWindow)
+        WebView(fileName: "index", fileExtension: "html", viewContext: viewContext, openWindow: openWindow, title: $title)
+            .onAppear{
+                if let window = NSApplication.shared.windows.first {
+                    window.title = "Formatter Toolbox"
+                    window.setContentSize(NSSize(width: 800, height: 500))
+                    window.minSize = NSSize(width: 800, height: 500)
+        
+//                    window.titleVisibility = .hidden
+                    window.titlebarAppearsTransparent = true
+//                    window.isMovableByWindowBackground = true
+//                    window.standardWindowButton(.closeButton)?.superview?.addSubview(setTitleBar(window: window, title: title))
+                    
+                    window.backgroundColor = .white
+                    DispatchQueue.main.async {
+                        let screenSize = NSScreen.screens.first?.frame.size ?? NSSize(width: 0, height: 0)
+                        let windowSize = window.frame.size
+                        let xPosition = (screenSize.width - windowSize.width) / 8
+                        let yPosition = (screenSize.height - windowSize.height) - screenSize.height / 8
+                        window.setFrameOrigin(NSPoint(x: xPosition, y: yPosition))
+                    }
+                }
+            }
+//            .onChange(of: title) { newValue in
+//                updateWindowTitleBar(title: newValue)
+//            }
+    }
+}
+
+func setTitleBar(window: NSWindow, title: String) -> NSView{
+    let leftWidth: CGFloat = 70;
+    let titleBar = NSHostingView(rootView: HStack(spacing: 0) {
+        HStack {  Spacer() }
+        .frame(width: leftWidth, height: 40)
+        .background(Color(hex: "#eeeeee"))
+        HStack {
+            Text("Formatter Toolbox  >")
+                .foregroundColor(Color(hex: "#323232"))
+                .padding(EdgeInsets(top: 10, leading: 6, bottom: 0, trailing: 0))
+                .font(.custom("Balthazar-Regular", size: 16))
+            Text(title)
+                .foregroundColor(Color(hex: "#323232"))
+                .padding(.top, 10)
+                .font(.custom("Balthazar-Regular", size: 14))
+                .underline()
+            Spacer()
+        }
+        .frame(width: (window.frame.width - leftWidth), height: 40)
+        .background(Color.white)
+    })
+    
+    titleBar.frame = NSRect(x: 0, y: 0, width: window.frame.width, height: 40)
+    return titleBar
+}
+
+func updateWindowTitleBar(title: String) {
+    let leftWidth: CGFloat = 70;
+    if let window = NSApplication.shared.windows.first {
+        window.standardWindowButton(.closeButton)?.superview?.subviews.compactMap { $0 as? NSHostingView }.forEach { hostingView in
+            hostingView.rootView = HStack(spacing: 0) {
+                HStack { Spacer() }
+                .frame(width: leftWidth, height: 40)
+                .background(Color(hex: "#eeeeee"))
+                HStack {
+                    Text("Formatter Toolbox  >")
+                        .foregroundColor(Color(hex: "#323232"))
+                        .padding(EdgeInsets(top: 10, leading: 6, bottom: 0, trailing: 0))
+                        .font(.custom("Balthazar-Regular", size: 16))
+                    Text(title)
+                        .foregroundColor(Color(hex: "#323232"))
+                        .padding(.top, 10)
+                        .font(.custom("Balthazar-Regular", size: 14))
+                        .underline()
+                    Spacer()
+                }
+                .frame(width: (window.frame.width - leftWidth), height: 40)
+                .background(Color.white)
+            }
+        }
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue: Double(b) / 255,
+            opacity: Double(a) / 255
+        )
     }
 }
 

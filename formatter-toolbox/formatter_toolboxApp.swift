@@ -12,27 +12,30 @@ import Combine
 struct formatter_toolboxApp: App {
     let persistenceController = PersistenceController.shared
     
+    init(){
+        loadCustomFont()
+    }
+    
     var body: some Scene {
         Window("Main", id: "Main") {
             ContentView()
-                .frame(minWidth: 800, minHeight: 400)
-                .onAppear{
-                    if let window = NSApplication.shared.windows.first {
-                        window.title = "Formatter Toolbox"
-                        window.setContentSize(NSSize(width: 800, height: 500))
-                        window.minSize = NSSize(width: 800, height: 500)
-                        window.titlebarAppearsTransparent = true
-                        window.backgroundColor = .white
-                        DispatchQueue.main.async {
-                            let screenSize = NSScreen.screens.first?.frame.size ?? NSSize(width: 0, height: 0)
-                            let windowSize = window.frame.size
-                            let xPosition = (screenSize.width - windowSize.width) / 8
-                            let yPosition = (screenSize.height - windowSize.height) - screenSize.height / 8
-                            window.setFrameOrigin(NSPoint(x: xPosition, y: yPosition))
-                        }
-                    }
-                }
+                .frame(minWidth: 800, minHeight: 500)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+    }
+}
+
+
+func loadCustomFont() {
+    guard let fontURL = Bundle.main.url(forResource: "Balthazar-Regular", withExtension: "ttf") else {
+        print("Failed to find font file.")
+        return
+    }
+
+    var error: Unmanaged<CFError>?
+    CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, &error)
+
+    if let error = error?.takeUnretainedValue() {
+        print("Failed to load font: \(error)")
     }
 }

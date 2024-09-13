@@ -9,24 +9,15 @@
 /* Begin PBXBuildFile section */
 		292270572C7F2B5B00A5544A /* formatter_toolboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292270562C7F2B5B00A5544A /* formatter_toolboxApp.swift */; };
 		292270592C7F2B5B00A5544A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292270582C7F2B5B00A5544A /* ContentView.swift */; };
-		2922705B2C7F2B5C00A5544A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2922705A2C7F2B5C00A5544A /* Assets.xcassets */; };
-		2922705E2C7F2B5C00A5544A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2922705D2C7F2B5C00A5544A /* Preview Assets.xcassets */; };
 		2922706A2C7FF9C300A5544A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292270692C7FF9C300A5544A /* WebKit.framework */; };
 		2922706C2C7FF9CD00A5544A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2922706B2C7FF9CD00A5544A /* AppKit.framework */; };
-		292270792C7FFD3B00A5544A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 292270662C7FF93B00A5544A /* index.html */; };
 		29A348452C8546AF0097C826 /* OperationHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A348442C8546AF0097C826 /* OperationHistoryMapper.swift */; };
-		29CF32EF2C91407C00A04B10 /* define-layout.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E42C91407B00A04B10 /* define-layout.js */; };
-		29CF32F02C91407C00A04B10 /* define-tool.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E52C91407B00A04B10 /* define-tool.js */; };
-		29CF32F12C91407C00A04B10 /* swift-communicate.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E62C91407B00A04B10 /* swift-communicate.js */; };
-		29CF32F22C91407C00A04B10 /* setting.css in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E72C91407B00A04B10 /* setting.css */; };
-		29CF32F32C91407C00A04B10 /* Balthazar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E82C91407B00A04B10 /* Balthazar-Regular.ttf */; };
-		29CF32F42C91407C00A04B10 /* xml-formatter.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32E92C91407B00A04B10 /* xml-formatter.js */; };
-		29CF32F52C91407C00A04B10 /* define-button.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EA2C91407B00A04B10 /* define-button.js */; };
-		29CF32F62C91407C00A04B10 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EB2C91407C00A04B10 /* index.html */; };
-		29CF32F72C91407C00A04B10 /* define-tag.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EC2C91407C00A04B10 /* define-tag.js */; };
-		29CF32F82C91407C00A04B10 /* define-svg.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32ED2C91407C00A04B10 /* define-svg.js */; };
-		29CF32F92C91407C00A04B10 /* md5.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF32EE2C91407C00A04B10 /* md5.js */; };
-		29DCF3E42C8955DE000F6D24 /* xml-formatter.js in Resources */ = {isa = PBXBuildFile; fileRef = 29DCF3E32C8955DE000F6D24 /* xml-formatter.js */; };
+		29CF330C2C92E73100A04B10 /* index.css in Resources */ = {isa = PBXBuildFile; fileRef = 29CF33062C92E73100A04B10 /* index.css */; };
+		29CF330D2C92E73100A04B10 /* Balthazar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29CF33072C92E73100A04B10 /* Balthazar-Regular.ttf */; };
+		29CF330E2C92E73100A04B10 /* define-info.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF33082C92E73100A04B10 /* define-info.js */; };
+		29CF33102C92E73100A04B10 /* index.js in Resources */ = {isa = PBXBuildFile; fileRef = 29CF330A2C92E73100A04B10 /* index.js */; };
+		29CF33112C92E73100A04B10 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 29CF330B2C92E73100A04B10 /* index.html */; };
+		29CF33202C9432FE00A04B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29CF331F2C9432FE00A04B10 /* Assets.xcassets */; };
 		29E34EC62C80546500C8EC94 /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 29E34EC42C80546500C8EC94 /* dataModel.xcdatamodeld */; };
 		29E34EC82C806F1D00C8EC94 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E34EC72C806F1D00C8EC94 /* CoreData.framework */; };
 		29E34ECA2C81532100C8EC94 /* UserSettingMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E34EC92C81532100C8EC94 /* UserSettingMapper.swift */; };
@@ -38,25 +29,16 @@
 		292270532C7F2B5B00A5544A /* formatter-toolbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "formatter-toolbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		292270562C7F2B5B00A5544A /* formatter_toolboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = formatter_toolboxApp.swift; sourceTree = "<group>"; };
 		292270582C7F2B5B00A5544A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2922705A2C7F2B5C00A5544A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2922705D2C7F2B5C00A5544A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2922705F2C7F2B5C00A5544A /* formatter_toolbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = formatter_toolbox.entitlements; sourceTree = "<group>"; };
-		292270662C7FF93B00A5544A /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		292270692C7FF9C300A5544A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		2922706B2C7FF9CD00A5544A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29A348442C8546AF0097C826 /* OperationHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationHistoryMapper.swift; sourceTree = "<group>"; };
-		29CF32E42C91407B00A04B10 /* define-layout.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-layout.js"; sourceTree = "<group>"; };
-		29CF32E52C91407B00A04B10 /* define-tool.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-tool.js"; sourceTree = "<group>"; };
-		29CF32E62C91407B00A04B10 /* swift-communicate.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "swift-communicate.js"; sourceTree = "<group>"; };
-		29CF32E72C91407B00A04B10 /* setting.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = setting.css; sourceTree = "<group>"; };
-		29CF32E82C91407B00A04B10 /* Balthazar-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Balthazar-Regular.ttf"; sourceTree = "<group>"; };
-		29CF32E92C91407B00A04B10 /* xml-formatter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "xml-formatter.js"; sourceTree = "<group>"; };
-		29CF32EA2C91407B00A04B10 /* define-button.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-button.js"; sourceTree = "<group>"; };
-		29CF32EB2C91407C00A04B10 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		29CF32EC2C91407C00A04B10 /* define-tag.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-tag.js"; sourceTree = "<group>"; };
-		29CF32ED2C91407C00A04B10 /* define-svg.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "define-svg.js"; sourceTree = "<group>"; };
-		29CF32EE2C91407C00A04B10 /* md5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = md5.js; sourceTree = "<group>"; };
-		29DCF3E32C8955DE000F6D24 /* xml-formatter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "xml-formatter.js"; sourceTree = "<group>"; };
+		29CF33062C92E73100A04B10 /* index.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = index.css; path = "../../../ft-client/dist/index.css"; sourceTree = "<group>"; };
+		29CF33072C92E73100A04B10 /* Balthazar-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Balthazar-Regular.ttf"; path = "../../../ft-client/dist/Balthazar-Regular.ttf"; sourceTree = "<group>"; };
+		29CF33082C92E73100A04B10 /* define-info.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "define-info.js"; path = "../../../ft-client/dist/define-info.js"; sourceTree = "<group>"; };
+		29CF330A2C92E73100A04B10 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = index.js; path = "../../../ft-client/dist/index.js"; sourceTree = "<group>"; };
+		29CF330B2C92E73100A04B10 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = "../../../ft-client/dist/index.html"; sourceTree = "<group>"; };
+		29CF331F2C9432FE00A04B10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29E34EC52C80546500C8EC94 /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
 		29E34EC72C806F1D00C8EC94 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29E34EC92C81532100C8EC94 /* UserSettingMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingMapper.swift; sourceTree = "<group>"; };
@@ -106,37 +88,20 @@
 				29E34ECD2C819D2400C8EC94 /* FileController.swift */,
 				29E34ECB2C815C9A00C8EC94 /* PersistenceController.swift */,
 				29E34EC42C80546500C8EC94 /* dataModel.xcdatamodeld */,
-				2922705A2C7F2B5C00A5544A /* Assets.xcassets */,
 				2922705F2C7F2B5C00A5544A /* formatter_toolbox.entitlements */,
-				2922705C2C7F2B5C00A5544A /* Preview Content */,
+				29CF331F2C9432FE00A04B10 /* Assets.xcassets */,
 			);
 			path = "formatter-toolbox";
-			sourceTree = "<group>";
-		};
-		2922705C2C7F2B5C00A5544A /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2922705D2C7F2B5C00A5544A /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		292270652C7FF8F900A5544A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29CF32E82C91407B00A04B10 /* Balthazar-Regular.ttf */,
-				29CF32EA2C91407B00A04B10 /* define-button.js */,
-				29CF32E42C91407B00A04B10 /* define-layout.js */,
-				29CF32ED2C91407C00A04B10 /* define-svg.js */,
-				29CF32EC2C91407C00A04B10 /* define-tag.js */,
-				29CF32E52C91407B00A04B10 /* define-tool.js */,
-				29CF32EB2C91407C00A04B10 /* index.html */,
-				29CF32EE2C91407C00A04B10 /* md5.js */,
-				29CF32E72C91407B00A04B10 /* setting.css */,
-				29CF32E62C91407B00A04B10 /* swift-communicate.js */,
-				29CF32E92C91407B00A04B10 /* xml-formatter.js */,
-				29DCF3E32C8955DE000F6D24 /* xml-formatter.js */,
-				292270662C7FF93B00A5544A /* index.html */,
+				29CF33072C92E73100A04B10 /* Balthazar-Regular.ttf */,
+				29CF33082C92E73100A04B10 /* define-info.js */,
+				29CF33062C92E73100A04B10 /* index.css */,
+				29CF330B2C92E73100A04B10 /* index.html */,
+				29CF330A2C92E73100A04B10 /* index.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -167,6 +132,8 @@
 			dependencies = (
 			);
 			name = "formatter-toolbox";
+			packageProductDependencies = (
+			);
 			productName = "formatter-toolbox";
 			productReference = 292270532C7F2B5B00A5544A /* formatter-toolbox.app */;
 			productType = "com.apple.product-type.application";
@@ -195,6 +162,8 @@
 				Base,
 			);
 			mainGroup = 2922704A2C7F2B5B00A5544A;
+			packageReferences = (
+			);
 			productRefGroup = 292270542C7F2B5B00A5544A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -209,21 +178,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29CF32F22C91407C00A04B10 /* setting.css in Resources */,
-				29CF32F42C91407C00A04B10 /* xml-formatter.js in Resources */,
-				292270792C7FFD3B00A5544A /* index.html in Resources */,
-				29CF32F02C91407C00A04B10 /* define-tool.js in Resources */,
-				2922705E2C7F2B5C00A5544A /* Preview Assets.xcassets in Resources */,
-				29CF32F32C91407C00A04B10 /* Balthazar-Regular.ttf in Resources */,
-				29CF32F82C91407C00A04B10 /* define-svg.js in Resources */,
-				2922705B2C7F2B5C00A5544A /* Assets.xcassets in Resources */,
-				29CF32F52C91407C00A04B10 /* define-button.js in Resources */,
-				29DCF3E42C8955DE000F6D24 /* xml-formatter.js in Resources */,
-				29CF32F92C91407C00A04B10 /* md5.js in Resources */,
-				29CF32F62C91407C00A04B10 /* index.html in Resources */,
-				29CF32F12C91407C00A04B10 /* swift-communicate.js in Resources */,
-				29CF32EF2C91407C00A04B10 /* define-layout.js in Resources */,
-				29CF32F72C91407C00A04B10 /* define-tag.js in Resources */,
+				29CF330D2C92E73100A04B10 /* Balthazar-Regular.ttf in Resources */,
+				29CF33102C92E73100A04B10 /* index.js in Resources */,
+				29CF33112C92E73100A04B10 /* index.html in Resources */,
+				29CF33202C9432FE00A04B10 /* Assets.xcassets in Resources */,
+				29CF330C2C92E73100A04B10 /* index.css in Resources */,
+				29CF330E2C92E73100A04B10 /* define-info.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,11 +330,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "formatter-toolbox/formatter_toolbox.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"formatter-toolbox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -395,11 +356,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "formatter-toolbox/formatter_toolbox.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"formatter-toolbox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
