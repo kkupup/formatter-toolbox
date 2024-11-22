@@ -19,9 +19,10 @@ struct formatter_toolboxApp: App {
     var body: some Scene {
         Window("Main", id: "Main") {
             ContentView()
-                .frame(minWidth: 800, minHeight: 500)
+                .frame(minWidth: 1200, minHeight: 700)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+        .windowStyle(.hiddenTitleBar)
     }
 }
 

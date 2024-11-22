@@ -55,7 +55,7 @@ class WebViewCoordinator: NSObject, WKScriptMessageHandler {
             stjDeleteAllOperationHistoryHandlerResolve(result: OperationHistoryMapper(viewContext: viewContext).deleteAllOperationHistories(), webView: message.webView)
         }
         else if message.name == "deleteHistoryHandler", let messageBody = message.body as? String  {
-            stjDeleteHistoryHandlerResolve(result: OperationHistoryMapper(viewContext: viewContext).deleteAllOperationHistories(idString: messageBody),  webView: message.webView)
+            stjDeleteHistoryHandlerResolve(result: OperationHistoryMapper(viewContext: viewContext).deleteOperationHistories(idString: messageBody),  webView: message.webView)
         }
     }
     
@@ -147,13 +147,13 @@ struct ContentView: View {
             .onAppear{
                 if let window = NSApplication.shared.windows.first {
                     window.title = "Formatter Toolbox"
-                    window.setContentSize(NSSize(width: 800, height: 500))
-                    window.minSize = NSSize(width: 800, height: 500)
+                    window.setContentSize(NSSize(width: 1200, height: 700))
+                    window.minSize = NSSize(width:1200, height: 700)
         
-//                    window.titleVisibility = .hidden
+                    window.titleVisibility = .hidden
                     window.titlebarAppearsTransparent = true
-//                    window.isMovableByWindowBackground = true
-//                    window.standardWindowButton(.closeButton)?.superview?.addSubview(setTitleBar(window: window, title: title))
+                    window.isMovableByWindowBackground = true
+                    window.standardWindowButton(.closeButton)?.superview?.addSubview(setTitleBar(window: window, title: title))
                     
                     window.backgroundColor = .white
                     DispatchQueue.main.async {
@@ -178,15 +178,14 @@ func setTitleBar(window: NSWindow, title: String) -> NSView{
         .frame(width: leftWidth, height: 40)
         .background(Color(hex: "#eeeeee"))
         HStack {
-            Text("Formatter Toolbox  >")
+            Text("Formatter Toolbox")
                 .foregroundColor(Color(hex: "#323232"))
-                .padding(EdgeInsets(top: 10, leading: 6, bottom: 0, trailing: 0))
+                .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 0))
                 .font(.custom("Balthazar-Regular", size: 16))
-            Text(title)
-                .foregroundColor(Color(hex: "#323232"))
-                .padding(.top, 10)
-                .font(.custom("Balthazar-Regular", size: 14))
-                .underline()
+//            Text(title)
+//                .foregroundColor(Color(hex: "#323232"))
+//                .padding(.top, 10)
+//                .font(.custom("Balthazar-Regular", size: 14))
             Spacer()
         }
         .frame(width: (window.frame.width - leftWidth), height: 40)
@@ -197,32 +196,32 @@ func setTitleBar(window: NSWindow, title: String) -> NSView{
     return titleBar
 }
 
-func updateWindowTitleBar(title: String) {
-    let leftWidth: CGFloat = 70;
-    if let window = NSApplication.shared.windows.first {
-        window.standardWindowButton(.closeButton)?.superview?.subviews.compactMap { $0 as? NSHostingView }.forEach { hostingView in
-            hostingView.rootView = HStack(spacing: 0) {
-                HStack { Spacer() }
-                .frame(width: leftWidth, height: 40)
-                .background(Color(hex: "#eeeeee"))
-                HStack {
-                    Text("Formatter Toolbox  >")
-                        .foregroundColor(Color(hex: "#323232"))
-                        .padding(EdgeInsets(top: 10, leading: 6, bottom: 0, trailing: 0))
-                        .font(.custom("Balthazar-Regular", size: 16))
-                    Text(title)
-                        .foregroundColor(Color(hex: "#323232"))
-                        .padding(.top, 10)
-                        .font(.custom("Balthazar-Regular", size: 14))
-                        .underline()
-                    Spacer()
-                }
-                .frame(width: (window.frame.width - leftWidth), height: 40)
-                .background(Color.white)
-            }
-        }
-    }
-}
+//func updateWindowTitleBar(title: String) {
+//    let leftWidth: CGFloat = 70;
+//    if let window = NSApplication.shared.windows.first {
+//        window.standardWindowButton(.closeButton)?.superview?.subviews.compactMap { $0 as? NSHostingView }.forEach { hostingView in
+//            hostingView.rootView = HStack(spacing: 0) {
+//                HStack { Spacer() }
+//                .frame(width: leftWidth, height: 40)
+//                .background(Color(hex: "#eeeeee"))
+//                HStack {
+//                    Text("Formatter Toolbox  -")
+//                        .foregroundColor(Color(hex: "#323232"))
+//                        .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 0))
+//                        .font(.custom("Balthazar-Regular", size: 16))
+//                    Text(title)
+//                        .foregroundColor(Color(hex: "#323232"))
+//                        .padding(.top, 10)
+//                        .font(.custom("Balthazar-Regular", size: 14))
+//                        .underline()
+//                    Spacer()
+//                }
+//                .frame(width: (window.frame.width - leftWidth), height: 40)
+//                .background(Color.white)
+//            }
+//        }
+//    }
+//}
 
 extension Color {
     init(hex: String) {

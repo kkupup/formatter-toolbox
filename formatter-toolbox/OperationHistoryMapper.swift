@@ -44,7 +44,7 @@ class OperationHistoryMapper{
         }
     }
     
-    func deleteAllOperationHistories(idString: String) -> Bool{
+    func deleteOperationHistories(idString: String) -> Bool{
         guard let id = UUID(uuidString: idString) else {
                 print("Invalid UUID string.")
                 return false
@@ -60,7 +60,7 @@ class OperationHistoryMapper{
             }
             return true
         } catch {
-            print("Failed to delete all OperationHistory records: \(error)")
+            print("Failed to delete OperationHistory records: \(error)")
             return false
         }
     }
